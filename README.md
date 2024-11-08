@@ -12,3 +12,4 @@ From [this youtube video](https://www.youtube.com/watch?v=W-LDhPyv478), using:
 - (no javascript or frameworks)
 
 `npm create vite@latest tailwindcss-landing-one`
+- Select 'Vanilla', 'Javascript'
