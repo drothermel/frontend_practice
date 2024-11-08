@@ -11,5 +11,11 @@ From [this youtube video](https://www.youtube.com/watch?v=W-LDhPyv478), using:
 - html
 - (no javascript or frameworks)
 
-`npm create vite@latest tailwindcss-landing-one`
-- Select 'Vanilla', 'Javascript'
+Setup the proj and install deps:
+```
+npm create vite@latest tailwindcss-landing-one
+// Select 'Vanilla', 'Javascript'
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
