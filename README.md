@@ -2,6 +2,20 @@
 
 TODO: Add my VSCode and node/pnpm setup info.
 
+## Shadcn-Svelte Sidebar Template
+**Project:** [sidebar_setup](https://github.com/drothermel/frontend_practice/blob/main/sidebar_setup/README.md)
+
+**Main Focus:** Understand how shadcn-svelte sidebar works & hook up a data-model to create an easily modifiable personal full app template based on the sidebar.
+
+Using the [Sidebar component](https://next.shadcn-svelte.com/docs/components/sidebar#sidebargroup) and the [Sidebar Block](https://next.shadcn-svelte.com/blocks#sidebar-08) ([github](https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/new-york/block/sidebar-09)) to setup a project using:
+- SvelteKit
+- Svelte 5
+- tailwindcss
+- shadcn-svelte
+
+**<In Progress>**
+
+
 ## TailwindCSS Basic Landing Page
 **Project:** [tailwindcss-landing-one](https://github.com/drothermel/frontend_practice/blob/main/tailwindcss-landing-one/README.md)
 
