@@ -1,42 +1,20 @@
 # frontend_practice
 
-Basically all of these will require a node.js setup and will benefit from using VSCode. (TODO: add info).
+TODO: Add my VSCode and node/pnpm setup info.
 
-## TailwindCSS
+## TailwindCSS Basic Landing Page
+**Project:** [tailwindcss-landing-one](https://github.com/drothermel/frontend_practice/blob/main/tailwindcss-landing-one/README.md)
 
-### First Project: Basic Landing Page
+**Main focus:** reactive page layout & interactive components.
 
 From [this youtube video](https://www.youtube.com/watch?v=W-LDhPyv478), using:
 - vite
 - html
-- (no javascript or frameworks)
+- tailwindcss
+(no javascript or frameworks)
 
-Setup the proj and install deps:
-```
-# Create the project, 'Vanilla', 'Javascript'
-npm create vite@latest tailwindcss-landing-one
-cd tailwindcss-landing-one
+**Final Result:**
 
-# Install deps and init project
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+<img src="https://github.com/user-attachments/assets/cd3e480c-abfe-47cc-afcc-5f2525b0c290" alt="Landing Page Screenshot" width="100%">
 
-# Add the following to tailwind.config.js content section:
-content: [ 
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-]
 
-# Remove everything in style.css and then add tailwind directives
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-# Delete unneeded files
-rm counter.js
-rm main.js
-rm index.html; touch index.html
-
-# Then run the project!
-npm run dev
-```
