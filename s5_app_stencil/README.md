@@ -26,3 +26,9 @@ Then add styles from shadcn
 - Create a new route
 - Add a nav bar including that route to `+layout.svelte`
 - Update the styling so text on a default page looks reasonable
+
+## Final Result
+
+![Screenshot 2024-12-10 at 3 59 31 PM](https://github.com/user-attachments/assets/404efa09-fb6b-45af-96c8-dd547bdda3ed)
+
+![Screenshot 2024-12-10 at 3 59 17 PM](https://github.com/user-attachments/assets/30260642-85b6-48c4-bf57-57ac70537b65)
