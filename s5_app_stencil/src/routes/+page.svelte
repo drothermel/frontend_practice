@@ -1,2 +1,4 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<div class="flex-col md:flex">
+  <h1 class="text-3xl font-bold tracking-tight">Page Title</h1>
+  <p>What an exciting app stencil!</p>
+</div>
