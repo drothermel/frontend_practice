@@ -1,38 +1,28 @@
-# sv
+# Basic SvelteKit App Stencil
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Includes steps from setting up with the SvelteKit CLI, adding in shadcn-svelte, and adding a basic navigation bar with a single additional page route.
 
-## Creating a project
+## Setup with the CLI
 
-If you're seeing this, you've probably already done this step. Congrats!
+`pnpx sv create <app-name>`
+- typescript
+- tailwindcss
+- typography
+- defaults for everything else
 
-```bash
-# create a new project in the current directory
-npx sv create
+## Add shadcn-svelte and formatting
 
-# create a new project in my-app
-npx sv create my-app
-```
+`pnpm dlx shadcn-svelte@next init`
+- New York, Slate
+`pnpm add postcss`
 
-## Developing
+Then add styles from shadcn
+- Copy the font Geist files in
+- Add the typography, scrollbar and font styles to `app.css`
+- Update `app.html` and `+layout.svelte` to have padding etc from shadcn
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Add Basic Nav Bar
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- Create a new route
+- Add a nav bar including that route to `+layout.svelte`
+- Update the styling so text on a default page looks reasonable
