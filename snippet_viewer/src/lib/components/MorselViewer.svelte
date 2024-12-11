@@ -4,6 +4,7 @@
     getMorselViewerContext,
     setMorselViewerContext,
   } from "$lib/components/context";
+  import MorselInput from "$lib/components/MorselInput.svelte";
 
   // Build our dummy morsels
   let morsels: Morsel[] = $state([]);
@@ -24,4 +25,7 @@
   setMorselViewerContext(morselContext);
 </script>
 
-<pre>{JSON.stringify(getMorselViewerContext(), null, 2)}</pre>
+<div class="flex flex-col gap-4 p-4">
+  <MorselInput />
+  <pre>{JSON.stringify(getMorselViewerContext(), null, 2)}</pre>
+</div>
