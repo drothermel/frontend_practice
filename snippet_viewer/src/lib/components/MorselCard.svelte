@@ -7,7 +7,7 @@
   let { morsel }: { morsel: Morsel } = $props();
 </script>
 
-<Card.Root class="max-w-[800px] min-w-[500px]">
+<Card.Root class="w-full">
   <Card.Header>
     <Card.Title tag="h3" class="text-xl font-bold">{morsel.title}</Card.Title>
     <Card.Description class="flex flex-col gap-1">
