@@ -2,6 +2,7 @@
   import { type Morsel, type MorselViewerContext } from "$lib/types/types";
   import { getMorselViewerContext } from "$lib/components/context";
   import MorselCard from "$lib/components/MorselCard.svelte";
+  import Button from "./ui/button/button.svelte";
 
   // TODO: Do we need to set the viewer context too or is the reactivity enough
   let morselViewerContext: MorselViewerContext = getMorselViewerContext();
@@ -75,14 +76,16 @@
     {/if}
     <p>{morselInput.morselText}</p>
   </div> -->
-  <button
-    aria-label="Add Morsel"
-    onclick={() => {
-      console.log("MorselInput: Clicked!");
-      console.log($state.snapshot(morselInput));
-      addMorsel();
-    }}
-  >
-    Add Morsel
-  </button>
+  <div class="flex flex-row justify-center">
+    <Button
+      aria-label="Add Morsel"
+      onclick={() => {
+        console.log("MorselInput: Clicked!");
+        console.log($state.snapshot(morselInput));
+        addMorsel();
+      }}
+    >
+      Add Morsel
+    </Button>
+  </div>
 </div>
