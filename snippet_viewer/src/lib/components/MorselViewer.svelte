@@ -27,5 +27,6 @@
 
 <div class="flex flex-col gap-4 p-4">
   <MorselInput />
+  <h3>Morsel Data:</h3>
   <pre>{JSON.stringify(getMorselViewerContext(), null, 2)}</pre>
 </div>

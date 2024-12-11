@@ -3,6 +3,6 @@
 </script>
 
 <div class="flex flex-col gap-4">
-  <h1 class="text-3xl font-bold tracking-tight">Morsel Viewer Data</h1>
+  <h1 class="text-3xl font-bold tracking-tight">Morsel Viewer</h1>
   <MorselViewer />
 </div>
