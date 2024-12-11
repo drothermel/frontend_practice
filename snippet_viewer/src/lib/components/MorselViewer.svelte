@@ -1,6 +1,7 @@
 <script lang="ts">
   import { type Morsel, type MorselViewerContext } from "$lib/types/types";
   import { getMorselViewerContext, setMorselViewerContext } from "./context";
+  import * as Card from "./ui/card/index";
   import MorselInput from "./MorselInput.svelte";
   import MorselCard from "./MorselCard.svelte";
 
@@ -23,12 +24,15 @@
   setMorselViewerContext(morselContext);
 </script>
 
-<div class="flex flex-col gap-4 p-4 mx-auto">
-  <MorselInput />
-  <h3>Morsel Data:</h3>
-  <div class="flex flex-col items-center gap-4">
-    {#each morsels as morsel (morsel.time)}
-      <MorselCard {morsel} />
-    {/each}
-  </div>
-</div>
+<Card.Root>
+  <Card.Header>
+    <Card.Title class="text-xl">Morsel Library</Card.Title>
+  </Card.Header>
+  <Card.Content>
+    <div class="flex flex-col items-center gap-4">
+      {#each morsels as morsel (morsel.time)}
+        <MorselCard {morsel} />
+      {/each}
+    </div>
+  </Card.Content>
+</Card.Root>
