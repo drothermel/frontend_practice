@@ -1,6 +1,7 @@
 <script lang="ts">
   import { type Morsel, type MorselViewerContext } from "$lib/types/types";
   import { getMorselViewerContext } from "$lib/components/context";
+  import MorselCard from "$lib/components/MorselCard.svelte";
 
   // TODO: Do we need to set the viewer context too or is the reactivity enough
   let morselViewerContext: MorselViewerContext = getMorselViewerContext();
@@ -15,18 +16,21 @@
     morselText: "",
     morselTags: "",
   });
+  let morsel: Morsel = $derived({
+    title: morselInput.morselTitle,
+    text: morselInput.morselText,
+    tags: morselInput.morselTags.split(",").map((str) => str.trim()),
+    time: new Date(),
+  });
 
   function addMorsel() {
-    let newTags = Array.from(new Set(morselInput.morselTags.split(",")));
-    morselViewerContext.morsels.push({
-      title: morselInput.morselTitle,
-      text: morselInput.morselText,
-      tags: newTags,
-      time: new Date(),
-    } as Morsel);
+    morselViewerContext.morsels.unshift(morsel);
     morselViewerContext.tags = Array.from(
-      new Set([...morselViewerContext.tags, ...newTags])
+      new Set([...morselViewerContext.tags, ...morsel.tags])
     );
+    morselInput.morselTitle = "";
+    morselInput.morselText = "";
+    morselInput.morselTags = "";
   }
 </script>
 
@@ -62,14 +66,15 @@
       ></textarea>
     </div>
   </div>
-  <div class="border border-red-950 p-4">
+  <MorselCard {morsel} />
+  <!-- <div class="border border-red-950 p-4">
     <h2 class="text-xl">Morsel Preview</h2>
     <h3>{morselInput.morselTitle}</h3>
     {#if morselInput.morselTags !== ""}
       <p>Tags: {morselInput.morselTags}</p>
     {/if}
     <p>{morselInput.morselText}</p>
-  </div>
+  </div> -->
   <button
     aria-label="Add Morsel"
     onclick={() => {

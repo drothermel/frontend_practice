@@ -1,10 +1,8 @@
 <script lang="ts">
   import { type Morsel, type MorselViewerContext } from "$lib/types/types";
-  import {
-    getMorselViewerContext,
-    setMorselViewerContext,
-  } from "$lib/components/context";
-  import MorselInput from "$lib/components/MorselInput.svelte";
+  import { getMorselViewerContext, setMorselViewerContext } from "./context";
+  import MorselInput from "./MorselInput.svelte";
+  import MorselCard from "./MorselCard.svelte";
 
   // Build our dummy morsels
   let morsels: Morsel[] = $state([]);
@@ -28,5 +26,7 @@
 <div class="flex flex-col gap-4 p-4">
   <MorselInput />
   <h3>Morsel Data:</h3>
-  <pre>{JSON.stringify(getMorselViewerContext(), null, 2)}</pre>
+  {#each morsels as morsel (morsel.time)}
+    <MorselCard {morsel} />
+  {/each}
 </div>
