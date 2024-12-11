@@ -23,10 +23,12 @@
   setMorselViewerContext(morselContext);
 </script>
 
-<div class="flex flex-col gap-4 p-4">
+<div class="flex flex-col gap-4 p-4 mx-auto">
   <MorselInput />
   <h3>Morsel Data:</h3>
-  {#each morsels as morsel (morsel.time)}
-    <MorselCard {morsel} />
-  {/each}
+  <div class="flex flex-col items-center gap-4">
+    {#each morsels as morsel (morsel.time)}
+      <MorselCard {morsel} />
+    {/each}
+  </div>
 </div>

@@ -35,7 +35,7 @@
   }
 </script>
 
-<div class="flex flex-col gap-4 p-4 border border-green-950">
+<div class="flex flex-col gap-4 mx-auto p-4 border border-green-950">
   <h3 class="text-xl">Morsel Input</h3>
   <div class="border border-gray-900 p-4">
     <div class="flex flex-row gap-4">
