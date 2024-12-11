@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex flex-col gap-6 w-full">
-  <h1 class="text-3xl font-bold tracking-tight">Morsel Editor</h1>
+  <h1 class="text-3xl font-bold tracking-tight">Snippet Editor</h1>
   <div class="flex flex-row gap-4 w-full">
     <div class="w-1/3">
       <MorselInput />

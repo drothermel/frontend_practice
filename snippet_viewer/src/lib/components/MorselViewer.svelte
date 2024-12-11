@@ -26,7 +26,7 @@
 
 <Card.Root>
   <Card.Header>
-    <Card.Title class="text-xl">Morsel Library</Card.Title>
+    <Card.Title class="text-xl">Snippet Library</Card.Title>
   </Card.Header>
   <Card.Content>
     <div class="flex flex-col items-center gap-4">

@@ -42,7 +42,10 @@
 
 <Card.Root>
   <Card.Header>
-    <Card.Title class="text-xl">Create Morsel</Card.Title>
+    <Card.Title class="text-xl">Add Snippet</Card.Title>
+    <Card.Description
+      >Add a unit of information to your library.</Card.Description
+    >
   </Card.Header>
   <Card.Content class="flex flex-col gap-4">
     <div class="grid gap-2">
@@ -77,14 +80,14 @@
     <MorselCard {morsel} />
     <div class="flex flex-row justify-center">
       <Button
-        aria-label="Add Morsel"
+        aria-label="Add Snippet"
         onclick={() => {
           console.log("MorselInput: Clicked!");
           console.log($state.snapshot(morselInput));
           addMorsel();
         }}
       >
-        Add Morsel
+        Add Snippet
       </Button>
     </div>
   </Card.Content>
