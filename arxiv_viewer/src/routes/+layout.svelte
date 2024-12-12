@@ -14,9 +14,14 @@
           >Home</a
         >
         <a
-          href="/editor"
+          href="/jsonapi"
           class="hover:text-primary text-sm font-medium transition-colors"
-          >Editor</a
+          >JSON Posts</a
+        >
+        <a
+          href="/arxivapi"
+          class="hover:text-primary text-sm font-medium transition-colors"
+          >Arxiv Responses</a
         >
       </div>
     </div>

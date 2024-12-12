@@ -4,7 +4,7 @@
     body: string;
   };
 
-  async function getPosts() {
+  async function getJSONPosts() {
     const response = await fetch("https://dummyjson.com/posts");
     const { posts } = await response.json();
     return posts as Post[];
@@ -20,7 +20,7 @@
 
 <h1 class="text-3xl font-bold tracking-tight">Dummy JSON Posts</h1>
 
-{#await getPosts()}
+{#await getJSONPosts()}
   <p>Loading...</p>
 {:then posts}
   <pre>{JSON.stringify(posts, null, 2)}</pre>
