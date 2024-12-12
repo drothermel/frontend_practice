@@ -6,12 +6,12 @@
   import * as Card from "./ui/card/index";
   import { Badge } from "./ui/badge";
   import { Button } from "./ui/button";
+  import * as AlertDialog from "./ui/alert-dialog";
 
   let { morsel }: { morsel: Morsel } = $props();
   let morselContext: MorselViewerContext = getMorselViewerContext();
 
   function onDelete() {
-    console.log("Tried to delete morsel", morsel);
     morselContext.morsels = morselContext.morsels.filter((m) => m !== morsel);
     morselContext.tags = Array.from(
       new Set(morselContext.morsels.flatMap((morsel) => morsel.tags))
@@ -20,16 +20,41 @@
 </script>
 
 <Card.Root class="w-full relative">
-  <Button
+  <!-- <Button
     variant="ghost"
     size="icon"
     class="absolute right-2 top-2 h-6 w-6 rounded-full hover:bg-destructive hover:text-destructive-foreground"
     onclick={() => onDelete()}
-  >
-    <SquareX />
-  </Button>
+  > -->
   <Card.Header>
-    <Card.Title tag="h3" class="text-xl font-bold">{morsel.title}</Card.Title>
+    <div class="flex flex-row">
+      <Card.Title tag="h3" class="text-xl font-bold">{morsel.title}</Card.Title>
+      <AlertDialog.Root>
+        <AlertDialog.Trigger>
+          <Button
+            variant="ghost"
+            size="icon"
+            class="absolute right-2 top-2 h-6 w-6 rounded-full hover:bg-destructive hover:text-destructive-foreground"
+            ><SquareX /></Button
+          >
+        </AlertDialog.Trigger>
+        <AlertDialog.Content>
+          <AlertDialog.Header>
+            <AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
+            <AlertDialog.Description>
+              This action cannot be undone. This will permanently delete your
+              snippet and it cannot be recovered.
+            </AlertDialog.Description>
+          </AlertDialog.Header>
+          <AlertDialog.Footer>
+            <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+            <AlertDialog.Action onclick={() => onDelete()}
+              >Continue</AlertDialog.Action
+            >
+          </AlertDialog.Footer>
+        </AlertDialog.Content>
+      </AlertDialog.Root>
+    </div>
     <Card.Description class="flex flex-col gap-1">
       Created: {morsel.time.toLocaleString()}
       {#if morsel.tags.length > 0 && morsel.tags[0] !== ""}
