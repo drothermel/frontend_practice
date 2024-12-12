@@ -2,6 +2,25 @@
 
 Includes steps from setting up with the SvelteKit CLI, adding in shadcn-svelte, and adding a basic navigation bar with a single additional page route.
 
+## Quickstart
+
+Streamlined steps to initialize a new app stencil to build from.
+
+```bash
+export APP_NAME=<app_name>
+export BRANCH_NAME=<branch_name>
+
+pnpx sv create $APP_NAME
+cd $APP_NAME
+pnpm dlx shadcn-svelte@next init
+pnpm add postcss
+cp -r ../s5_app_stencil/src .
+cp -r ../s5_app_stencil/static .
+ga .
+gc -m "setup s5_app_stencil"
+git push -u origin $BRANCH
+```
+
 ## Setup with the CLI
 
 `pnpx sv create <app-name>`
