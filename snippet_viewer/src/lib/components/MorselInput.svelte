@@ -67,8 +67,6 @@
       />
       <Label for="text-input">Text:</Label>
       <Textarea
-        rows="5"
-        cols="50"
         id="text-input"
         bind:value={morselInput.morselText}
         placeholder={morselDefault.text}
