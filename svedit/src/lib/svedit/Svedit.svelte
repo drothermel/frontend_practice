@@ -10,6 +10,8 @@
     class: css_class,
   } = $props();
 
+  console.log("Inside svedit: ", entry_session);
+
   // add accessor to the passed in entry_session to the context
   setContext("svedit", {
     get entry_session() {

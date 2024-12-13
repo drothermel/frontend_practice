@@ -2,7 +2,7 @@
 /***********************************************
  * Annotations and Text Types
  ***********************************************/
-export type AnnotationType = 'strong' | 'emphasis';
+export type AnnotationType = 'plain' | 'strong' | 'emphasis';
 export type Annotation = {
     type: AnnotationType;
     start_idx: number;
@@ -15,6 +15,17 @@ export const StrongAnn = (
     type: 'strong',
     start_idx,
     end_idx,
+})
+
+export type TextFragment = {
+    type: AnnotationType;
+    content: string;
+    annotation_index: number;
+}
+export const PlainFragment = (content: string): TextFragment => ({
+    type: 'plain',
+    content,
+    annotation_index: -1,
 })
 
 export type AnnText = {
@@ -55,28 +66,20 @@ export interface StoryBlockData extends BlockData {
  * Entry Session Types
  ***********************************************/
 
-export type EntryType = 'page' | 'unknown';
+export type EntryType = 'empty' | 'page' | 'unknown';
 export type EntryData = {
     type: EntryType;
     title: AnnText;
     subtitle: AnnText;
     body: BlockData[],
 }
+export type EntryTextKey = 'title' | 'subtitle'
+
+// Stored in history array for undo/redo
+export type EntryDataState = {
+    entry: EntryData
+}
 
 export type EntrySessionData = {
     path_elem: AnnText[];
 }
-/**
- * svedit = {
- *    'entry_session': { 
- *         path_elem: [
- *              text, 
- *              Annotation[]
- *        ],
- *       ...}
- * }
- */
-// 
-
-
-
