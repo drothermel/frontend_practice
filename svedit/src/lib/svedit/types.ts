@@ -54,10 +54,17 @@ export type Fragment = {
 
 export interface BlockData {
     type: string;
+}
+export interface PageBlockData extends BlockData {
     title: AnnText;
-    description: AnnText;
+    body: BlockData[];
+}
+export interface TextBlockData extends BlockData {
+    text: AnnText[];
 }
 export interface StoryBlockData extends BlockData {
+    title: AnnText;
+    description: AnnText;
     image: string;
     layout: number;
 }
@@ -65,6 +72,14 @@ export interface StoryBlockData extends BlockData {
 /***********************************************
  * Entry Session Types
  ***********************************************/
+export type PathIndex = number | string;
+export type Path = PathIndex[];
+
+export type SetPathStatus = {
+    success: boolean;
+    missingPath?: Path;
+    failedElem?: any;
+}
 
 export type EntryType = 'empty' | 'page' | 'unknown';
 export type EntryData = {
@@ -76,8 +91,8 @@ export type EntryData = {
 export type EntryTextKey = 'title' | 'subtitle'
 
 // Stored in history array for undo/redo
-export type EntryDataState = {
-    entry: EntryData
+export type SveditStateData = {
+    rootBlock?: PageBlockData;
 }
 
 export type EntrySessionData = {
