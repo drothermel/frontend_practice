@@ -1,3 +1,4 @@
+import type SveditSession from "./SveditSession.svelte";
 
 /***********************************************
  * Annotations and Text Types
@@ -54,15 +55,19 @@ export type Fragment = {
 
 export interface BlockData {
     type: string;
+    name: string;
 }
 export interface PageBlockData extends BlockData {
+    type: 'page';
     title: AnnText;
     body: BlockData[];
 }
 export interface TextBlockData extends BlockData {
+    type: 'text';
     text: AnnText[];
 }
 export interface StoryBlockData extends BlockData {
+    type: 'story';
     title: AnnText;
     description: AnnText;
     image: string;
@@ -70,8 +75,17 @@ export interface StoryBlockData extends BlockData {
 }
 
 /***********************************************
- * Entry Session Types
+ * Svedit Session Types
  ***********************************************/
+export type SveditContext = {
+    session: SveditSession;
+}
+
+// Stored in history array for undo/redo
+export type SveditStateData = {
+    rootBlock?: BlockData;
+}
+
 export type PathIndex = number | string;
 export type Path = PathIndex[];
 
@@ -81,20 +95,3 @@ export type SetPathStatus = {
     failedElem?: any;
 }
 
-export type EntryType = 'empty' | 'page' | 'unknown';
-export type EntryData = {
-    type: EntryType;
-    title: AnnText;
-    subtitle: AnnText;
-    body: BlockData[],
-}
-export type EntryTextKey = 'title' | 'subtitle'
-
-// Stored in history array for undo/redo
-export type SveditStateData = {
-    rootBlock?: PageBlockData;
-}
-
-export type EntrySessionData = {
-    path_elem: AnnText[];
-}

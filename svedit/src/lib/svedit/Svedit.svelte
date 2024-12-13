@@ -1,21 +1,28 @@
 <script lang="ts">
+  import SveditSession from "$lib/svedit/SveditSession.svelte";
   import { setContext } from "svelte";
-  import type { EntrySessionData } from "./types";
+
+  interface Props {
+    sveditSession: SveditSession;
+    children: () => any;
+    editable?: boolean;
+    ref?: any;
+    class?: string;
+  }
 
   let {
-    entry_session,
+    sveditSession,
     children, // this is a special prop: the contents of the component tag
     editable = false,
     ref = $bindable(),
     class: css_class,
   } = $props();
 
-  console.log("Inside svedit: ", entry_session);
-
   // add accessor to the passed in entry_session to the context
+  // context['svedit'] is of type SveditContext
   setContext("svedit", {
-    get entry_session() {
-      return entry_session;
+    get session(): SveditSession {
+      return sveditSession;
     },
   });
 
@@ -33,7 +40,6 @@
 <div class="svedit">
   <div
     class="svedit-canvas {css_class}"
-    class:hide-selection={entry_session.selection?.type === "container"}
     bind:this={ref}
     {onbeforeinput}
     contenteditable={editable ? "true" : "false"}

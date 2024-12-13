@@ -1,25 +1,21 @@
 <script lang="ts">
-  import {
-    type AnnText,
-    type EntryTextKey,
-    type TextFragment,
-    PlainFragment,
-  } from "./types";
-  import EntrySession from "./EntrySession.svelte";
+  import type SveditSession from "./SveditSession";
+  import type { AnnText, Path, SveditContext, TextFragment } from "./types";
+  import { PlainFragment } from "./types";
   import { getContext } from "svelte";
+
   interface Props {
-    entry_key: EntryTextKey;
+    content_path: Path;
     class: string;
     editable?: boolean;
   }
-  let { entry_key, class: css_class, editable = true }: Props = $props();
+  let { content_path, class: css_class, editable = true }: Props = $props();
 
-  interface SveditContext {
-    entry_session: EntrySession;
-  }
-  const svedit: SveditContext = getContext("svedit");
+  // TODO: look at how we should have these getters and setters
+  const sveditContext: SveditContext = getContext("svedit");
+  let sveditSession: SveditSession = $derived(sveditContext.session);
 
-  function render_annotated_text(ann_text: AnnText) {
+  function render_annotated_text(ann_text: AnnText): TextFragment[] {
     let fragments: TextFragment[] = [];
     let last_index: number = 0;
 
@@ -50,8 +46,10 @@
     return fragments;
   }
 
-  let ann_text = $derived(svedit.entry_session.get(entry_key));
-  let fragments = $derived(render_annotated_text(ann_text));
+  // let ann_text: AnnText = $derived(sveditSession.rootBlock?.text);
+  // let fragments = $derived(render_annotated_text(ann_text));
+  let annText: AnnText = $derived(sveditSession.getElemByPath(content_path));
+  let fragments: TextFragment[] = $derived(render_annotated_text(annText));
 
   function handle_link_click(e: Event) {
     if (editable) {
@@ -61,13 +59,7 @@
 </script>
 
 <!-- ATTENTION: The comment blocks are needed to prevent unwanted text nodes with whitespace. -->
-<div
-  contenteditable={editable}
-  data-type="text"
-  data-path={entry_key}
-  style="anchor-name: --{entry_key};"
-  class={css_class}
->
+<div contenteditable={editable} data-type="text" class={css_class}>
   <!--
 --><!-- Zero-width space for empty text --><!--
 -->{#each fragments as fragment, index}<!--

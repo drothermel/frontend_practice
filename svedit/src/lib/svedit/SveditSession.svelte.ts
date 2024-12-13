@@ -1,18 +1,20 @@
-import { type PageBlockData, type SveditStateData, type Path, type PathIndex, type SetPathStatus} from './types'
+import type { 
+    BlockData, 
+    SveditStateData, 
+    Path, 
+    PathIndex, 
+    SetPathStatus
+} from './types'
 
 export default class SveditSession {
 
-    // Currently the only state is the rootBlock but
-    // make the SveditState explicit for easy future updates
-    rootBlock?: PageBlockData = $state();
-    currSveditState: SveditStateData = $derived({
-        rootBlock: this.rootBlock,
-    })
+    sveditSessionState: SveditStateData = $state({})
+    rootBlock?: BlockData = $derived(this.sveditSessionState.rootBlock)
     history: SveditStateData[] = $state([]);
     future: SveditStateData[] = $state([]);
 
-    constructor(rootBlock?: PageBlockData){
-        this.rootBlock = rootBlock;
+    constructor(rootBlock?: BlockData){
+        this.sveditSessionState.rootBlock = rootBlock
     }
 
     getElemByPath(path: Path = []): any {
@@ -41,7 +43,7 @@ export default class SveditSession {
     setElemByPath(path: Path, newKey: PathIndex, value: any): SetPathStatus {
         // Record current state for history
         const startStateCopy = structuredClone(
-            $state.snapshot(this.currSveditState)
+            $state.snapshot(this.sveditSessionState)
         )
 
         // Get existing element to add (key, value) to.
