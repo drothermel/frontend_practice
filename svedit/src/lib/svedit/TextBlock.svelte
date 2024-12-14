@@ -1,9 +1,10 @@
 <script lang="ts">
   import { getContext } from "svelte";
-  import type { StoryBlockData, BlockData, Path, SveditContext } from "./types";
   import type SveditSession from "./SveditSession.svelte";
+  import type { TextBlockData, Path, BlockData, SveditContext } from "./types";
 
-  // Path is required even if blockData is also given
+  // Note that path is necessary even if block data is included
+  // TODO: having two potential sources of info is probably not ideal?
   interface Props {
     blockPath: Path;
     blockData?: BlockData;
@@ -20,35 +21,36 @@
   const sveditContext: SveditContext = getContext("svedit");
   let sveditSession: SveditSession = $derived(sveditContext.session);
 
-  function getStoryBlockData(
+  // TODO: one function to narrow block data types based on "type" key
+  function getTextBlockData(
     path: Path,
     blockData?: BlockData,
     session?: SveditSession
-  ): StoryBlockData | undefined {
+  ): TextBlockData | undefined {
     // Narrow the block data type
-    if (blockData !== undefined && blockData.type == "story") {
-      return blockData as StoryBlockData;
+    if (blockData !== undefined && blockData.type == "text") {
+      return blockData as TextBlockData;
     }
     // Or get the block at the end of the path and return it if
     // it contains the needed StoryBlock keys
     else if (path !== undefined) {
       let elem = session?.getElemByPath(path);
-      if ("type" in elem && elem.type === "story") {
-        return elem as StoryBlockData;
+      if ("type" in elem && elem.type === "text") {
+        return elem as TextBlockData;
       }
     }
     return undefined;
   }
 
-  let storyBlockData: StoryBlockData | undefined = $derived.by(() =>
-    getStoryBlockData(blockPath, blockData, sveditSession)
+  let textBlockData: TextBlockData | undefined = $derived.by(() =>
+    getTextBlockData(blockPath, blockData, sveditSession)
   );
 
   const editable_css: string = $derived(
-    storyBlockData?.editable ? "" : "bg-gray-50 opacity-90"
+    textBlockData?.editable ? "" : "bg-gray-50 opacity-90"
   );
   const block_type: string = $derived(
-    storyBlockData?.editable ? "EditableStoryBlock" : "FixedStoryBlock"
+    textBlockData?.editable ? "EditableTextBlock" : "FixedTextBlock"
   );
 </script>
 
@@ -56,11 +58,6 @@
   class="flex flex-col gap-2 p-4 border border-green-950 {css_class} {editable_css}"
   contenteditable={blockData?.editable}
 >
-  <h3>{storyBlockData?.title.text}</h3>
-  <span class="font-mono text-xs text-rose-400">
-    ({block_type}) If I were to render an image it would be: {storyBlockData?.image}
-    with layout
-    {storyBlockData?.layout}.
-  </span>
-  <span>{storyBlockData?.description.text}</span>
+  <span class="font-mono text-xs text-rose-400"> ({block_type}) </span>
+  <span>{textBlockData?.content.text}</span>
 </div>

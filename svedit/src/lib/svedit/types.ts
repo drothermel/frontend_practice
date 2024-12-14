@@ -56,15 +56,17 @@ export type Fragment = {
 export interface BlockData {
     type: string;
     name: string;
+    uuid: string;
+    editable: boolean;
+}
+export interface TextBlockData extends BlockData {
+    type: 'text';
+    content: AnnText;
 }
 export interface PageBlockData extends BlockData {
     type: 'page';
     title: AnnText;
     body: BlockData[];
-}
-export interface TextBlockData extends BlockData {
-    type: 'text';
-    text: AnnText[];
 }
 export interface StoryBlockData extends BlockData {
     type: 'story';

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type SveditSession from "./SveditSession";
+  import type SveditSession from "./SveditSession.svelte";
   import type { AnnText, Path, SveditContext, TextFragment } from "./types";
   import { PlainFragment } from "./types";
   import { getContext } from "svelte";

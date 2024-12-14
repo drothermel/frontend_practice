@@ -6,6 +6,7 @@
   import PageBlock from "$lib/svedit/PageBlock.svelte";
   import StoryBlock from "$lib/svedit/StoryBlock.svelte";
   import UnknownBlock from "$lib/svedit/UnknownBlock.svelte";
+  import TextBlock from "$lib/svedit/TextBlock.svelte";
 
   // Note that path is necessary even if block data is included
   // TODO: having two potential sources of info is probably not ideal?
@@ -50,13 +51,20 @@
     getPageBlockData(blockPath, blockData, sveditSession)
   );
 
-  // let { block_index, path_in_block } = $props();
-  // let block = $derived(svedit.entry_session.body[block_index]);
+  const editable_css: string = $derived(
+    pageBlockData?.editable ? "" : "bg-gray-50 opacity-90"
+  );
+  const block_type: string = $derived(
+    pageBlockData?.editable ? "EditablePageBlock" : "FixedPageBlock"
+  );
 </script>
 
-<div class="flex flex-col gap-2 p-4 border border-green-950 {css_class}">
-  <h1 class="pb-4">{pageBlockData?.title.text}</h1>
-  <span class="font-mono text-xs text-rose-400"> (Body:) </span>
+<div
+  class="flex flex-col gap-2 p-4 border border-green-950 {css_class} {editable_css}"
+  contenteditable={pageBlockData?.editable}
+>
+  <h3>{pageBlockData?.title.text}</h3>
+  <span class="font-mono text-xs text-rose-400"> ({block_type}) Body: </span>
   <Container
     blockIterPath={[...blockPath, "body"]}
     class="body flex flex-col p-4 gap-4"
@@ -66,6 +74,8 @@
         <StoryBlock blockPath={["body", index]} blockData={block} />
       {:else if block.type === "page"}
         <PageBlock blockPath={["body", index]} blockData={block} />
+      {:else if block.type === "text"}
+        <TextBlock blockPath={["body", index]} blockData={block} />
       {:else}
         <UnknownBlock {block} />
       {/if}
