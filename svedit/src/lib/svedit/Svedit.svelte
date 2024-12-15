@@ -5,12 +5,10 @@
 
   let {
     sveditSession,
-    editable = false,
     ref = $bindable(),
     class: css_class,
   }: {
     sveditSession: SveditSession;
-    editable?: boolean;
     ref?: any;
     class?: string;
   } = $props();
@@ -28,12 +26,7 @@
 </script>
 
 <div class="svedit">
-  <div
-    class="svedit-canvas {css_class}"
-    bind:this={ref}
-    {onbeforeinput}
-    contenteditable={editable ? "true" : "false"}
-  >
+  <div class="svedit-canvas {css_class}" bind:this={ref} {onbeforeinput}>
     <Block blockPath={[]} />
   </div>
 </div>

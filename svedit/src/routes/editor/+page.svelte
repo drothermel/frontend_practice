@@ -62,4 +62,4 @@
 </script>
 
 <h1 class="text-3xl font-bold tracking-tight">Svedit Editor</h1>
-<Svedit {sveditSession} editable={true} class="flex flex-col gap-4" />
+<Svedit {sveditSession} class="flex flex-col gap-4" />
