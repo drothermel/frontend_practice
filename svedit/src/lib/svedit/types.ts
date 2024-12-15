@@ -1,4 +1,5 @@
 import type SveditSession from "./SveditSession.svelte";
+import type BlockData from "./BlockData.svelte";
 
 /***********************************************
  * Annotations and Text Types
@@ -53,28 +54,9 @@ export type Fragment = {
  * Block Types
  ***********************************************/
 
-export interface BlockData {
-    type: string;
-    name: string;
-    uuid: string;
-    editable: boolean;
-}
-export interface TextBlockData extends BlockData {
-    type: 'text';
-    content: AnnText;
-}
-export interface PageBlockData extends BlockData {
-    type: 'page';
-    title: AnnText;
-    body: BlockData[];
-}
-export interface StoryBlockData extends BlockData {
-    type: 'story';
-    title: AnnText;
-    description: AnnText;
-    image: string;
-    layout: number;
-}
+export type BlockType = 'text' | 'page' | 'story' | 'list' | 'unknown';
+export type FlowType = 'inline' | 'distinct' | 'card';
+export type ImageLayoutType = 'left' | 'right' | 'top' | 'bottom';
 
 /***********************************************
  * Svedit Session Types

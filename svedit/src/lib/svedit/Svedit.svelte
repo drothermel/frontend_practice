@@ -1,10 +1,10 @@
 <script lang="ts">
   import SveditSession from "$lib/svedit/SveditSession.svelte";
   import { setContext } from "svelte";
+  import Block from "$lib/svedit/Block.svelte";
 
   interface Props {
     sveditSession: SveditSession;
-    children: () => any;
     editable?: boolean;
     ref?: any;
     class?: string;
@@ -12,7 +12,6 @@
 
   let {
     sveditSession,
-    children, // this is a special prop: the contents of the component tag
     editable = false,
     ref = $bindable(),
     class: css_class,
@@ -44,6 +43,6 @@
     {onbeforeinput}
     contenteditable={editable ? "true" : "false"}
   >
-    {@render children()}
+    <Block blockPath={[]} />
   </div>
 </div>

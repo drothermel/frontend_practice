@@ -1,10 +1,10 @@
 import type { 
-    BlockData, 
     SveditStateData, 
     Path, 
     PathIndex, 
     SetPathStatus
 } from './types'
+import type BlockData from '$lib/svedit/BlockData.svelte'
 
 export default class SveditSession {
 
