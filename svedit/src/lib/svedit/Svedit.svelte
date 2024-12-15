@@ -1,29 +1,20 @@
 <script lang="ts">
   import SveditSession from "$lib/svedit/SveditSession.svelte";
-  import { setContext } from "svelte";
+  import { setSveditSession } from "$lib/svedit/context";
   import Block from "$lib/svedit/Block.svelte";
-
-  interface Props {
-    sveditSession: SveditSession;
-    editable?: boolean;
-    ref?: any;
-    class?: string;
-  }
 
   let {
     sveditSession,
     editable = false,
     ref = $bindable(),
     class: css_class,
+  }: {
+    sveditSession: SveditSession;
+    editable?: boolean;
+    ref?: any;
+    class?: string;
   } = $props();
-
-  // add accessor to the passed in entry_session to the context
-  // context['svedit'] is of type SveditContext
-  setContext("svedit", {
-    get session(): SveditSession {
-      return sveditSession;
-    },
-  });
+  setSveditSession(sveditSession);
 
   function onbeforeinput(event: any) {
     const inserted_char = event.data;

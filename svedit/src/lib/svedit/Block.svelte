@@ -1,8 +1,6 @@
 <script lang="ts">
-  import type { SveditContext } from "./types";
-  import { getContext } from "svelte";
-  import type SveditSession from "$lib/svedit/SveditSession.svelte";
   import type { Path } from "./types";
+  import { getElemByPath } from "$lib/svedit/context";
   import BlockData from "$lib/svedit/BlockData.svelte";
   import Block from "$lib/svedit/Block.svelte";
 
@@ -10,10 +8,8 @@
     blockPath: Path;
   }
   let { blockPath }: Props = $props();
-
-  const sveditContext: SveditContext = getContext("svedit");
-  let sveditSession: SveditSession = $derived(sveditContext.session);
-  let blockData: BlockData = $derived(sveditSession?.getElemByPath(blockPath));
+  // TODO: is this "state" rune needed?? why or why not?
+  let blockData: BlockData = $state(getElemByPath(blockPath));
 </script>
 
 <div

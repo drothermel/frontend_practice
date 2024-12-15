@@ -26,6 +26,27 @@
         ),
       }),
       new BlockData({
+        type: "list",
+        editable: false,
+        elements: [
+          new BlockData({
+            type: "text",
+            editable: true,
+            text: PreAnnText("The first super sub block, what a cool nest!"),
+          }),
+          new BlockData({
+            type: "text",
+            editable: true,
+            text: PreAnnText("The second super sub block, what a cool nest!"),
+          }),
+          new BlockData({
+            type: "text",
+            editable: true,
+            text: PreAnnText("The last super sub block, what a cool nest!"),
+          }),
+        ],
+      }),
+      new BlockData({
         type: "story",
         editable: true,
         title: PreAnnText("Story Block Title"),
@@ -41,5 +62,4 @@
 </script>
 
 <h1 class="text-3xl font-bold tracking-tight">Svedit Editor</h1>
-
 <Svedit {sveditSession} editable={true} class="flex flex-col gap-4" />

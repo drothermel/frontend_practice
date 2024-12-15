@@ -1,23 +1,24 @@
 <script lang="ts">
-  import type SveditSession from "./SveditSession.svelte";
-  import type { AnnText, Path, SveditContext, TextFragment } from "./types";
+  import type { AnnText, Path, TextFragment } from "./types";
+  import { getElemByPath } from "$lib/svedit/context";
   import { PlainFragment } from "./types";
-  import { getContext } from "svelte";
 
-  interface Props {
+  let {
+    content_path,
+    class: css_class,
+    editable = true,
+  }: {
     content_path: Path;
     class: string;
     editable?: boolean;
-  }
-  let { content_path, class: css_class, editable = true }: Props = $props();
+  } = $props();
 
-  // TODO: look at how we should have these getters and setters
-  const sveditContext: SveditContext = getContext("svedit");
-  let sveditSession: SveditSession = $derived(sveditContext.session);
-
-  function render_annotated_text(ann_text: AnnText): TextFragment[] {
+  function render_annotated_text(ann_text?: AnnText): TextFragment[] {
     let fragments: TextFragment[] = [];
     let last_index: number = 0;
+    if (!ann_text) {
+      return fragments;
+    }
 
     const sorted_annotations = $state
       .snapshot(ann_text.annotations)
@@ -46,9 +47,10 @@
     return fragments;
   }
 
-  // let ann_text: AnnText = $derived(sveditSession.rootBlock?.text);
-  // let fragments = $derived(render_annotated_text(ann_text));
-  let annText: AnnText = $derived(sveditSession.getElemByPath(content_path));
+  let elem: any = $state(getElemByPath(content_path));
+  let annText: AnnText | undefined = $derived(
+    elem && "text" in elem ? (elem as AnnText) : undefined
+  );
   let fragments: TextFragment[] = $derived(render_annotated_text(annText));
 
   function handle_link_click(e: Event) {
