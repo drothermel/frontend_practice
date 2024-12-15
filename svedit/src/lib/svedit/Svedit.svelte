@@ -1,30 +1,18 @@
 <script lang="ts">
   import SveditSession from "$lib/svedit/SveditSession.svelte";
-  import { setContext } from "svelte";
-
-  interface Props {
-    sveditSession: SveditSession;
-    children: () => any;
-    editable?: boolean;
-    ref?: any;
-    class?: string;
-  }
+  import { setSveditSession } from "$lib/svedit/context";
+  import Block from "$lib/svedit/Block.svelte";
 
   let {
     sveditSession,
-    children, // this is a special prop: the contents of the component tag
-    editable = false,
     ref = $bindable(),
     class: css_class,
+  }: {
+    sveditSession: SveditSession;
+    ref?: any;
+    class?: string;
   } = $props();
-
-  // add accessor to the passed in entry_session to the context
-  // context['svedit'] is of type SveditContext
-  setContext("svedit", {
-    get session(): SveditSession {
-      return sveditSession;
-    },
-  });
+  setSveditSession(sveditSession);
 
   function onbeforeinput(event: any) {
     const inserted_char = event.data;
@@ -38,12 +26,7 @@
 </script>
 
 <div class="svedit">
-  <div
-    class="svedit-canvas {css_class}"
-    bind:this={ref}
-    {onbeforeinput}
-    contenteditable={editable ? "true" : "false"}
-  >
-    {@render children()}
+  <div class="svedit-canvas {css_class}" bind:this={ref} {onbeforeinput}>
+    <Block blockPath={[]} />
   </div>
 </div>

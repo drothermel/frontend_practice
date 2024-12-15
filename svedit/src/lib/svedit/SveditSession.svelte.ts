@@ -1,10 +1,10 @@
 import type { 
-    BlockData, 
     SveditStateData, 
     Path, 
     PathIndex, 
     SetPathStatus
 } from './types'
+import type BlockData from '$lib/svedit/BlockData.svelte'
 
 export default class SveditSession {
 
@@ -31,6 +31,9 @@ export default class SveditSession {
 
         if (Array.isArray(elem)) {
             if (typeof newKey === 'number') {
+                if (newKey == -1){
+                    return true;
+                }
                 return newKey >=0 && newKey <= elem.length && Number.isInteger(newKey);
             }
             return false; // I don't want to set string keys in an array
@@ -74,7 +77,12 @@ export default class SveditSession {
         }
 
         // Create a new element if the path element does not exist
-        existingElem[newKey] = value
+        if (newKey == -1 && Array.isArray(existingElem) ) {
+            // -1 means append to end of array
+            existingElem.push(value)
+        } else {
+            existingElem[newKey] = value
+        }
 
         // Update the history object if setting was successful
         this.history = [...this.history, startStateCopy];
