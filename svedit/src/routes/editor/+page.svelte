@@ -19,13 +19,13 @@
             "In this example the title and subtitle above are editable, but this piece of content here is not. Below is a container of Story and List blocks."
           ),
         }),
-        new BlockData({
-          type: "text",
-          editable: true,
-          text: PreAnnText(
-            "This is an editable text block! And there are multiple lines that I want to render separately.\n Will this actually render the new lines??"
-          ),
-        }),
+        // new BlockData({
+        //   type: "text",
+        //   editable: true,
+        //   text: PreAnnText(
+        //     "This is an editable text block! And there are multiple lines that I want to render separately.\n Will this actually render the new lines??"
+        //   ),
+        // }),
         new BlockData({
           type: "list",
           editable: false,
@@ -40,11 +40,11 @@
               editable: true,
               text: PreAnnText("The second super sub block, what a cool nest!"),
             }),
-            new BlockData({
-              type: "text",
-              editable: true,
-              text: PreAnnText("The last super sub block, what a cool nest!"),
-            }),
+            // new BlockData({
+            //   type: "text",
+            //   editable: true,
+            //   text: PreAnnText("The last super sub block, what a cool nest!"),
+            // }),
           ],
         }),
         new BlockData({

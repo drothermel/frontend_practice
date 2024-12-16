@@ -8,24 +8,54 @@ import type BlockData from '$lib/svedit/BlockData.svelte'
 
 export default class SveditSession {
 
-    sveditSessionState: SveditStateData = $state({})
-    rootBlock?: BlockData = $derived(this.sveditSessionState.rootBlock)
+    sveditSessionState: SveditStateData = $state() as SveditStateData;
+    pendingHistory: SveditStateData | null = $state(null);
     history: SveditStateData[] = $state([]);
     future: SveditStateData[] = $state([]);
 
-    constructor(rootBlock?: BlockData){
-        this.sveditSessionState.rootBlock = rootBlock
-        this.rootBlock?.setPathAndParentOnChildren(
-            [], // path = [] for root
-            // parent = undefined for root
-        )
+    constructor(rootBlock: BlockData){
+        this.sveditSessionState = {
+            rootBlock: rootBlock,
+        } as SveditStateData;
+        this.rootBlock.setSessionOnChildren(this);
+        this.rootBlock.setParentOnChildren(
+            null, // rootBlock parent is null 
+        );
+        this.rootBlock.setPathOnChildren(
+            [], // rootBlock path is empty
+        );
     } 
+
+    get rootBlock(): BlockData {
+        return this.sveditSessionState.rootBlock;
+    }
+
+    takeStateSnapshot(): void {
+        this.pendingHistory = structuredClone(
+            $state.snapshot(this.sveditSessionState)
+        ) as SveditStateData;
+    }
+
+    clearStateSnapshot(): void {
+        this.pendingHistory = null;
+    }
+
+    finalizePendingHistory(): void {
+        if (this.pendingHistory !== null) {
+            this.history = [...this.history, this.pendingHistory];
+            this.pendingHistory = null;
+        } else{
+            console.error("No pending history to finalize");
+        }
+    }
 
     getElemByPath(path: Path = []): any {
         let elem: any = this.rootBlock;
         for (let key of path) {
             elem = elem?.[key];
-            if (elem === undefined) break;
+            if (elem === undefined) {
+                return undefined;
+            };
         }
         return elem;
     }
@@ -49,9 +79,7 @@ export default class SveditSession {
 
     setElemByPath(path: Path, newKey: PathIndex, value: any): SetPathStatus {
         // Record current state for history
-        const startStateCopy = structuredClone(
-            $state.snapshot(this.sveditSessionState)
-        )
+        this.takeStateSnapshot();
 
         // Get existing element to add (key, value) to.
         // The path points to the existing element to set the
@@ -89,8 +117,7 @@ export default class SveditSession {
         }
 
         // Update the history object if setting was successful
-        this.history = [...this.history, startStateCopy];
-        this.future = [];
+        this.finalizePendingHistory();
         return {success: true};
     }
 }
