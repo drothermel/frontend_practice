@@ -2,7 +2,8 @@ import type {
     AnnText,
     BlockType,
     FlowType,
-    ImageLayoutType
+    ImageLayoutType,
+    Path,
 } from "$lib/svedit/types"
 
 export default class BlockData {
@@ -10,7 +11,6 @@ export default class BlockData {
     type: BlockType; 
     uuid: string;
     name: string;
-    rep_str: string;
 
     // Rendering
     editable: boolean = $state(false);
@@ -26,7 +26,10 @@ export default class BlockData {
     text?: AnnText = $state();
     image?: string = $state();
     image_layout: ImageLayoutType = $state('right');
-    elements: any[] = $state([]);
+    children: any[] = $state([]);
+    parent?: BlockData = $state();
+    path?: Path = $state();
+
 
     constructor(
         {
@@ -37,7 +40,7 @@ export default class BlockData {
             text,
             image,
             layout,
-            elements,
+            children,
             extra_css_class,
         } : {
             type: BlockType,
@@ -47,7 +50,7 @@ export default class BlockData {
             text?: AnnText,
             image?: string,
             layout?: ImageLayoutType,
-            elements?: any[],
+            children?: any[],
             extra_css_class?: string,
         }
     ) {
@@ -63,8 +66,8 @@ export default class BlockData {
         if (text !== undefined) {
             this.text = text;
         }
-        if (elements !== undefined) {
-            this.elements = elements;
+        if (children !== undefined) {
+            this.children = children;
         }
         if (image !== undefined) { 
             this.image = image;
@@ -75,6 +78,28 @@ export default class BlockData {
         if (extra_css_class !== undefined) {
             this.extra_css_class = extra_css_class;
         }
-        this.rep_str = `${this.editable ? "editable" : "fixed"} ${this.type} ${this.name}`;
+    }
+
+    get repStr(): string {
+        return `${this.editable ? "editable" : "fixed"} ${this.type} ${this.name} Parent: ${this.parent?.name}`;
+    }
+
+    setPathAndParentOnChildren(myPath: Path, myParent?: BlockData): void {
+        // Set myself
+        this.path = myPath;
+        this.parent = myParent;
+
+        // Set Children
+        for (const [index, child] of this.children.entries()) {
+            // Some form of validation
+            if (!child || !("path" in child) || !("parent" in child)) {
+                return;
+            }
+
+            child.setPathAndParentOnChildren(
+                [...myPath, "children", index], // path
+                this, // parent
+            );
+        }
     }
 }

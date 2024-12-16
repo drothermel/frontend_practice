@@ -15,7 +15,11 @@ export default class SveditSession {
 
     constructor(rootBlock?: BlockData){
         this.sveditSessionState.rootBlock = rootBlock
-    }
+        this.rootBlock?.setPathAndParentOnChildren(
+            [], // path = [] for root
+            // parent = undefined for root
+        )
+    } 
 
     getElemByPath(path: Path = []): any {
         let elem: any = this.rootBlock;
