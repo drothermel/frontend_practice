@@ -5,23 +5,27 @@ import type {
     ImageLayoutType,
     Success,
     Path,
+    MarkdownSetting,
 } from "$lib/svedit/types"
+import {marked} from "marked";
 import type SveditSession from "$lib/svedit/SveditSession.svelte";
 
 export default class BlockData {
     // Definition
-    type: BlockType; 
+    type: BlockType = $state('unknown'); 
     uuid: string;
-    name: string;
 
     // Rendering
-    editable: boolean = $state(false);
+    editable: boolean = $state(true);
     flow: FlowType = $state('inline');
     extra_css_class: string = $state(""); // easy to update
     editable_css_class: string = $derived(
         this.editable ? "bg-white opacity-100" : "bg-gray-50 opacity-90"
     );
     css_class: string = $derived(`${this.editable_css_class} ${this.extra_css_class}`)
+
+    markdown: string = $state("");
+    markdown_setting: MarkdownSetting = $state("both");
 
     // Content
     title?: AnnText = $state();
@@ -38,7 +42,7 @@ export default class BlockData {
     constructor(
         {
             type,
-            name,
+            markdown,
             parent,
             editable,
             title,
@@ -49,7 +53,7 @@ export default class BlockData {
             extra_css_class,
         } : {
             type: BlockType,
-            name?: string,
+            markdown?: string,
             parent?: BlockData | null,
             editable?: boolean,
             title?: AnnText,
@@ -62,7 +66,10 @@ export default class BlockData {
     ) {
         this.type = type;
         this.uuid = crypto.randomUUID();
-        this.name = name ? name : `${this.type}-${this.uuid}`;
+        if (markdown !== undefined) {
+            this.markdown = markdown;
+            this.markdown_setting = "preview";
+        }
         if (parent !== undefined) {
             this.parent = parent;
         }
@@ -89,8 +96,25 @@ export default class BlockData {
         }
     }
 
+    get name(): string {
+        return `${this.type}-${this.uuid}`;
+    }
+
     get repStr(): string {
         return `${this.editable ? "editable" : "fixed"} ${this.type} ${this.name} Parent: ${this.parent?.name}`;
+    }
+
+    get renderedMarkdown(): string {
+        return marked(this.markdown);
+    }
+    
+    setType(newType: BlockType): void {
+        this.session?.takeStateSnapshot();
+        this.type = newType;
+        if (this.type == "markdown") {
+            this.markdown_setting = "both";
+        }
+        this.session?.finalizePendingHistory();
     }
 
     get path(): Path {
