@@ -7,16 +7,18 @@
   <div class="flex flex-col">
     <!--Nav Bar-->
     <div class="border-b">
-      <div class="flex h-16 px-8 items-center space-x-4 lg:space-x-6">
-        <a
-          href="/"
-          class="hover:text-primary text-sm font-medium transition-colors"
-          >Home</a
+      <div
+        class="flex h-16 px-8 items-center space-x-4 lg:space-x-6 text-sm font-medium"
+      >
+        <a href="/" class="hover:text-primary transition-colors">Home</a>
+        <a href="/library" class="hover:text-primary transition-colors"
+          >Library</a
         >
-        <a
-          href="/editor"
-          class="hover:text-primary text-sm font-medium transition-colors"
-          >Editor</a
+        <a href="/jsonarxiv" class="hover:text-primary transition-colors"
+          >JSON Arxiv Results</a
+        >
+        <a href="/tablearxiv" class="hover:text-primary transition-colors"
+          >Table Arxiv Results</a
         >
       </div>
     </div>
