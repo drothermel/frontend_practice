@@ -11,11 +11,15 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@internationalized/date": "^3.6.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.9.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"autoprefixer": "^10.4.20",
+		"bits-ui": "1.0.0-next.72",
 		"clsx": "^2.1.1",
+		"lucide-svelte": "^0.468.0",
+		"paneforge": "1.0.0-next.1",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"tailwind-merge": "^2.5.5",
