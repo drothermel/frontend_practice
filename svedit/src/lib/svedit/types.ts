@@ -54,7 +54,8 @@ export type Fragment = {
  * Block Types
  ***********************************************/
 
-export type BlockType = 'text' | 'page' | 'story' | 'list' | 'unknown';
+export type BlockType = 'text' | 'page' | 'story' | 'list' | 'unknown' | 'markdown';
+export type MarkdownSetting = "both" | "preview";
 export type FlowType = 'inline' | 'distinct' | 'card';
 export type ImageLayoutType = 'left' | 'right' | 'top' | 'bottom';
 

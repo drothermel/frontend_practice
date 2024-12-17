@@ -26,7 +26,8 @@
 </script>
 
 <div class="svedit">
-  <div class="svedit-canvas {css_class}" bind:this={ref} {onbeforeinput}>
+  <!-- <div class="svedit-canvas {css_class}" bind:this={ref} {onbeforeinput}> -->
+  <div class="svedit-canvas {css_class}">
     <Block block={sveditSession.rootBlock} />
   </div>
 </div>

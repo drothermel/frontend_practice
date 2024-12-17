@@ -4,19 +4,28 @@
 
 /* Typography Styles */
 h1 {
-  @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  @apply scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-5xl;
 }
 h2 {
-  @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+  @apply scroll-m-20 text-2xl font-bold tracking-tight transition-colors mt-0;
 }
 h3 {
-  @apply scroll-m-20 text-2xl font-semibold tracking-tight;
-}
-h4 {
   @apply scroll-m-20 text-xl font-semibold tracking-tight;
 }
+h4 {
+  @apply scroll-m-20 text-lg font-semibold tracking-tight;
+}
 p {
-  @apply leading-7 [&:not(:first-child)]:mt-6;
+  @apply leading-4 [&:not(:first-child)]:mt-1;
+}
+a {
+  @apply text-cyan-800 underline;
+}
+ul {
+  @apply list-disc pl-6;
+}
+ol {
+  @apply list-decimal pl-6;
 }
 blockquote {
   @apply mt-6 border-l-2 pl-6 italic;
@@ -90,17 +99,17 @@ code {
 
 @layer base {
   @font-face {
-    font-family: 'geist-sans';
+    font-family: "geist-sans";
     src: url("/fonts/Geist/geist.woff2") format("woff2");
     font-display: swap;
-  }  
+  }
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
     font-synthesis-weight: none;
-    text-rendering: optimizeLegibility;      
+    text-rendering: optimizeLegibility;
   }
   .antialiased {
     -webkit-font-smoothing: antialiased;
