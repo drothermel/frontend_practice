@@ -67,12 +67,13 @@ export type SveditContext = {
 
 // Stored in history array for undo/redo
 export type SveditStateData = {
-    rootBlock?: BlockData;
+    rootBlock: BlockData;
 }
 
-export type PathIndex = number | string;
-export type Path = PathIndex[];
+export type PathIndex = number;
+export type Path = PathIndex[] | null;
 
+export type Success = boolean;
 export type SetPathStatus = {
     success: boolean;
     missingPath?: Path;
