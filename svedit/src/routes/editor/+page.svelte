@@ -7,11 +7,14 @@
   let rootBlock = $state(
     new BlockData({
       type: "list",
-      title: PreAnnText("Sveditor"),
-      text: PreAnnText(
-        "Below is a nested list of blocks and one day they will be editable!"
-      ),
       children: [
+        new BlockData({
+          type: "text",
+          title: PreAnnText("Sveditor"),
+          text: PreAnnText(
+            "Below is a nested list of blocks and one day they will be editable!"
+          ),
+        }),
         new BlockData({
           type: "text",
           editable: false,
@@ -29,6 +32,7 @@
         new BlockData({
           type: "list",
           editable: false,
+          text: PreAnnText("This is the first sub-list that we get to see:"),
           children: [
             new BlockData({
               type: "text",
