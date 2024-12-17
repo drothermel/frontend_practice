@@ -27,6 +27,9 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"add": "^2.0.6",
+		"lucide-svelte": "^0.468.0",
+		"pnpm": "^9.15.0",
 		"postcss": "^8.4.49"
 	}
 }
