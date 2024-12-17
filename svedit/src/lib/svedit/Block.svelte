@@ -1,64 +1,53 @@
 <script lang="ts">
-  import type { Path } from "./types";
-  import { getElemByPath } from "$lib/svedit/context";
+  import { Button } from "$lib/components/ui/button/index";
   import BlockData from "$lib/svedit/BlockData.svelte";
   import Block from "$lib/svedit/Block.svelte";
-  import { Button } from "$lib/components/ui/button/index";
+  import { onDestroy } from "svelte";
 
   interface Props {
-    blockPath: Path;
+    block: BlockData;
   }
-  let { blockPath }: Props = $props();
-  // TODO: is this "state" rune needed?? why or why not?
-  let blockData: BlockData = $state(getElemByPath(blockPath));
-  $effect(() => {
-    console.log(blockData.type, "BlockData has changed", blockData);
-  });
+  let { block }: Props = $props();
 </script>
 
 <div
-  class="flex flex-col gap-4 p-4 border border-blue-400 {blockData.css_class}"
-  contenteditable={blockData.editable}
+  class="flex flex-col gap-4 p-4 border border-blue-400 {block.css_class}"
+  contenteditable={block.editable}
 >
-  {#if blockData.path?.length > 0}
-    <!-- The Root Node Can't Have Blocks Added Before or After (or be removed) -->
+  <!-- Top Button Panel -->
+  {#if block.parent !== null}
     <div class="flex flex-row gap-4">
-      <Button
-        onclick={() => {
-          console.log("Add block above:", blockData.name, blockData.repStr);
-          blockData.addBlockAbove();
-        }}>Add Block Above</Button
-      >
-      <Button onclick={() => blockData.removeSelfFromParent()}
-        >Remove Block</Button
-      >
+      <Button onclick={() => block.addBlockAbove()}>Add Block Above</Button>
+      <Button onclick={() => block.removeSelfFromParent()}>Remove Block</Button>
     </div>
   {/if}
+
+  <!-- Debugging Info -->
   <div class="flex flex-col gap-1 text-xs font-normal text-rose-600">
-    <span>({blockData.repStr})</span>
-    <span class="text-xs font-normal text-rose-600"
-      >Parent: {blockData.parent?.name}</span
-    >
-    <span class="text-xs font-normal text-rose-600">Path: {blockData.path}</span
-    >
+    <span>({block.repStr})</span>
+    <span> Parent: {block.parent?.name}</span>
+    <span>Path: {block.path} </span>
   </div>
 
-  {#if blockData.title}
-    <h3>{blockData.title.text}</h3>
+  <!-- Render Myself -->
+  {#if block.title}
+    <h3>{block.title.text}</h3>
   {/if}
-  {#if blockData.text}
-    <span>{@html blockData.text.text.replace(/\n/g, "<br>")}</span>
+
+  {#if block.text}
+    <span>{@html block.text.text.replace(/\n/g, "<br>")}</span>
   {/if}
-  {#each blockData.children as elem, index (elem.uuid)}
-    <Block blockPath={[...blockPath, "children", index]} />
+
+  <!-- Render My Children -->
+  {#each block.children as child (child.uuid)}
+    <Block block={child} />
   {/each}
 
+  <!-- Botton Button Panel -->
   <div class="flex flex-row gap-4">
-    <!-- Root can have blocks added inside -->
-    <Button onclick={() => blockData.addChildBlock()}>Add Block Inside</Button>
-    <!-- The Root Node Can't Have Blocks Added Before or After (or be removed) -->
-    {#if blockData.path?.length > 0}
-      <Button onclick={() => blockData.addBlockBelow()}>Add Block Below</Button>
+    <Button onclick={() => block.addChildBlock()}>Add Block Inside</Button>
+    {#if block.parent !== null}
+      <Button onclick={() => block.addBlockBelow()}>Add Block Below</Button>
     {/if}
   </div>
 </div>

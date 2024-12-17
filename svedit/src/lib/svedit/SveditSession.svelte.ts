@@ -21,9 +21,6 @@ export default class SveditSession {
         this.rootBlock.setParentOnChildren(
             null, // rootBlock parent is null 
         );
-        this.rootBlock.setPathOnChildren(
-            [], // rootBlock path is empty
-        );
     } 
 
     get rootBlock(): BlockData {
@@ -49,15 +46,19 @@ export default class SveditSession {
         }
     }
 
-    getElemByPath(path: Path = []): any {
-        let elem: any = this.rootBlock;
-        for (let key of path) {
-            elem = elem?.[key];
-            if (elem === undefined) {
-                return undefined;
-            };
+    getElemByPath(path: Path = []): BlockData | undefined {
+        if (path === null){
+            return undefined;
         }
-        return elem;
+
+        let currBlock: BlockData = this.rootBlock;
+        for (let key of path) {
+            currBlock = currBlock.children[key];
+            if (currBlock === undefined) {
+                return undefined;
+            }
+        }
+        return currBlock;
     }
 
     canSetKey(elem: any, newKey: PathIndex): boolean {

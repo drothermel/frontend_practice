@@ -26,6 +26,6 @@ export function getRootBlock(): BlockData | undefined {
     return getSession().rootBlock;
 }
 
-export function getElemByPath(path: Path): any {
+export function getElemByPath(path: Path): BlockData | undefined {
     return getSession().getElemByPath(path);
 }
