@@ -1,53 +1,66 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
   import * as Table from "$lib/components/ui/table/index";
   import { Button } from "$lib/components/ui/button/index";
   import { Checkbox } from "$lib/components/ui/checkbox/index";
   import { Label } from "$lib/components/ui/label/index";
   import { SquareX } from "lucide-svelte";
 
+  interface Props {
+    headers: string[];
+    data: string[][];
+    onRowsSelected: (selectedIds: string[]) => void;
+  }
+  let { headers, data, onRowsSelected }: Props = $props();
+
   type Data = {
-    name: string;
-    age: number;
-    city: string;
-  };
-  type Row = {
     id: string;
-    name: string;
-    age: number;
-    city: string;
+    data: string[];
   };
+
   const dummyData = {
     headers: ["Name", "Age", "City"],
     data: [
-      { name: "John Doe", age: 25, city: "New York" },
-      { name: "Jane Doe", age: 30, city: "Los Angeles" },
-      { name: "John Smith", age: 35, city: "Chicago" },
-      { name: "Jane Smith", age: 40, city: "Houston" },
-      { name: "John Johnson", age: 45, city: "Phoenix" },
-      { name: "Jane Johnson", age: 50, city: "Philadelphia" },
-      { name: "John Williams", age: 55, city: "San Antonio" },
-      { name: "Jane Williams", age: 60, city: "San Diego" },
-      { name: "John Brown", age: 65, city: "Dallas" },
-      { name: "Jane Brown", age: 70, city: "San Jose" },
-      { name: "John Miller", age: 75, city: "Austin" },
+      ["John Doe", "25", "New York"],
+      ["Jane Doe", "30", "Los Angeles"],
+      ["John Smith", "35", "Chicago"],
+      ["Jane Smith", "40", "Houston"],
+      ["John Johnson", "45", "Phoenix"],
+      ["Jane Johnson", "50", "Philadelphia"],
+      ["John Williams", "55", "San Antonio"],
+      ["Jane Williams", "60", "San Diego"],
+      ["John Brown", "65", "Dallas"],
+      ["Jane Brown", "70", "San Jose"],
+      ["John Miller", "75", "Austin"],
     ],
   };
   let nextDummyDataIndex = $state(0);
+  let removeDisabled: boolean = $state(true);
 
-  let allRows: Row[] = $state([]);
+  let visibleHeaders: string[] = $derived(headers);
+  let allRows: Data[] = $derived(
+    data.map((row) => ({
+      id: row[headers.length - 1] ?? crypto.randomUUID(),
+      data: row,
+    }))
+  );
   let selectedRows: string[] = $state([]);
+
   function isSelected(id: string): boolean {
     return selectedRows.includes(id);
   }
+  function isAllSelected(): boolean {
+    return selectedRows.length === allRows.length;
+  }
+
   function toggleRowSelected(id: string): void {
+    console.log("Selected toggle: ", id);
     if (isSelected(id)) {
       selectedRows = selectedRows.filter((rowId) => rowId !== id);
     } else {
       selectedRows = [...selectedRows, id];
     }
-  }
-  function isAllSelected(): boolean {
-    return selectedRows.length === allRows.length;
+    onRowsSelected(selectedRows);
   }
   function toggleAllSelection(): void {
     if (isAllSelected()) {
@@ -55,21 +68,24 @@
     } else {
       selectedRows = allRows.map((row) => row.id);
     }
+    onRowsSelected(selectedRows);
   }
-  function addDataToTable(): void {
-    const data: Data =
-      dummyData.data[nextDummyDataIndex % dummyData.data.length];
-    allRows = [...allRows, { ...data, id: crypto.randomUUID() }];
-    nextDummyDataIndex += 1;
-  }
-  function removeDataFromTable(id: string): void {
-    allRows = allRows.filter((row) => row.id !== id);
-  }
+  //   function addDataToTable(): void {
+  //     const data: Data = {
+  //       id: crypto.randomUUID(),
+  //       data: dummyData.data[nextDummyDataIndex % dummyData.data.length],
+  //     };
+  //     allRows = [...allRows, data];
+  //     nextDummyDataIndex += 1;
+  //   }
+  //   function removeDataFromTable(id: string): void {
+  //     allRows = allRows.filter((row) => row.id !== id);
+  //   }
 
-  function removeSelected(): void {
-    allRows = allRows.filter((row) => !selectedRows.includes(row.id));
-    selectedRows = [];
-  }
+  //   function removeSelected(): void {
+  //     allRows = allRows.filter((row) => !selectedRows.includes(row.id));
+  //     selectedRows = [];
+  //   }
 
   $effect(() => {
     console.log("Selected:", $state.snapshot(selectedRows));
@@ -77,7 +93,7 @@
 </script>
 
 <div class="w-full flex flex-col">
-  <div class="grid grid-cols-2 gap-x-2 gap-y-4">
+  <!-- <div class="grid grid-cols-2 gap-x-2 gap-y-4">
     <Label class="text-md text-center" for="add">
       Add dummy data to see how the table functions:
     </Label>
@@ -86,7 +102,7 @@
       >Remove all selected rows:</Label
     >
     <Button id="remove" onclick={removeSelected}>Remove Selected</Button>
-  </div>
+  </div> -->
 
   <Table.Root>
     <Table.Header>
@@ -99,8 +115,8 @@
             }}
           />
         </Table.Head>
-        {#each [...dummyData.headers, "x"] as header}
-          <Table.Head class="text-lg tracking-tight  text-balance">
+        {#each visibleHeaders as header}
+          <Table.Head class="text-lg tracking-tight text-balance">
             {header}
           </Table.Head>
         {/each}
@@ -117,11 +133,12 @@
               }}
             />
           </Table.Cell>
-          <Table.Cell>{row.name}</Table.Cell>
-          <Table.Cell>{row.age}</Table.Cell>
-          <Table.Cell>{row.city}</Table.Cell>
-          <Table.Cell>
+          {#each row.data as cell}
+            <Table.Cell>{cell}</Table.Cell>
+          {/each}
+          <!-- <Table.Cell>
             <Button
+              disabled={removeDisabled}
               id="remove"
               variant="ghost"
               onclick={() => {
@@ -131,7 +148,7 @@
             >
               <SquareX />
             </Button>
-          </Table.Cell>
+          </Table.Cell> -->
         </Table.Row>
       {/each}
     </Table.Body>

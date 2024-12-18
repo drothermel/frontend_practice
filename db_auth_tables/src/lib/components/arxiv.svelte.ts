@@ -76,11 +76,12 @@ export default class ArxivQueryHandler {
         const result: ArxivResponse = JSON.parse(jsonString);
         const entries: ArxivResponseEntry[] = result['feed']['entry'];
         this.resultFeed = entries.map((e) => {return this.parseArxivFeedEntry(e)});
+        console.log($state.snapshot(this.resultFeed));
     }
 
     parseArxivFeedEntry(entry: ArxivResponseEntry): ArxivMetadata {
         let metadata: ArxivMetadata =  {
-            id: entry.id._text,
+            id: entry.id._text ?? crypto.randomUUID(),
             updated: entry.updated._text,
             published: entry.published._text,
             title: entry.title._text.replace(/\r?\n/g, " "),
