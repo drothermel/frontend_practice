@@ -31,6 +31,7 @@
 	},
 	"dependencies": {
 		"@tailwindcss/typography": "^0.5.15",
-		"postcss": "^8.4.49"
+		"postcss": "^8.4.49",
+		"xml-js": "^1.6.11"
 	}
 }
