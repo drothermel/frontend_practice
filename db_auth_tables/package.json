@@ -15,6 +15,7 @@
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.12.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.2",
+		"@tailwindcss/typography": "^0.5.15",
 		"autoprefixer": "^10.4.20",
 		"bits-ui": "1.0.0-next.72",
 		"clsx": "^2.1.1",
@@ -30,7 +31,6 @@
 		"vite": "^6.0.3"
 	},
 	"dependencies": {
-		"@tailwindcss/typography": "^0.5.15",
 		"@zerodevx/svelte-json-view": "^1.0.11",
 		"postcss": "^8.4.49",
 		"xml-js": "^1.6.11"
