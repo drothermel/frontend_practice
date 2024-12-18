@@ -11,6 +11,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.15
         version: 0.5.15(tailwindcss@3.4.17)
+      '@zerodevx/svelte-json-view':
+        specifier: ^1.0.11
+        version: 1.0.11(svelte@5.14.3)
       postcss:
         specifier: ^8.4.49
         version: 8.4.49
@@ -418,6 +421,11 @@ packages:
   '@typescript-eslint/types@8.18.1':
     resolution: {integrity: sha512-7uoAUsCj66qdNQNpH2G8MyTFlgerum8ubf21s3TSM3XmKXuIn+H2Sifh/ES2nPOPiYSRJWAk0fDkW0APBWcpfw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@zerodevx/svelte-json-view@1.0.11':
+    resolution: {integrity: sha512-mIjj0H1al/P4FPlbeDoiey93lNEUqBEAe5LIdD5GttZfEYt3awexD2lHwKNfUeY4jHizOJkoWTPN/2iO0GBqpw==}
+    peerDependencies:
+      svelte: ^3.57.0 || ^4.0.0 || ^5.0.0
 
   acorn-typescript@1.4.13:
     resolution: {integrity: sha512-xsc9Xv0xlVfwp2o7sQ+GCQ1PgbkdcpWdTzrwXxO3xDMTAywVS3oXVOcOHuRjAPkS4P9b+yc/qNF15460v+jp4Q==}
@@ -1352,6 +1360,10 @@ snapshots:
   '@types/estree@1.0.6': {}
 
   '@typescript-eslint/types@8.18.1': {}
+
+  '@zerodevx/svelte-json-view@1.0.11(svelte@5.14.3)':
+    dependencies:
+      svelte: 5.14.3
 
   acorn-typescript@1.4.13(acorn@8.14.0):
     dependencies:
