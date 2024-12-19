@@ -10,8 +10,11 @@ enum Roles {
   USER = 'USER',
 }
 
-export const load = async () => {
-    // todo
+export const load = async ({locals}) => {
+    // redirect user if logged in
+    if (locals.user) {
+      redirect(302, '/')
+    }
   }
   
   const register = async ({ request }) => {

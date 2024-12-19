@@ -3,8 +3,10 @@ import bcrypt from 'bcrypt'
 
 import { db } from '$lib/database'
 
-export const load = async () => {
-  // todo
+export const load = async ({locals}) => {
+    if (locals.user) {
+        redirect(302, '/')
+    }
 }
 
 const login = async ({ cookies, request }) => {
