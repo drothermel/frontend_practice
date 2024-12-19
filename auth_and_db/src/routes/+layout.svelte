@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import "../app.css";
   import { page } from "$app/stores";
   let { children } = $props();
@@ -17,7 +18,7 @@
   {#if $page.data.user}
     <a href="/admin">Admin</a>
 
-    <form action="/logout" method="POST">
+    <form action="/logout" method="POST" use:enhance>
       <button type="submit">Log out</button>
     </form>
   {/if}
