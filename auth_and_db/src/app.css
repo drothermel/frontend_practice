@@ -1,3 +1,17 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities'
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply min-h-screen bg-base-100 font-sans;
+    }
+
+    nav {
+        @apply bg-base-200;
+    }
+
+    nav > a {
+        @apply text-sm font-semibold text-primary-content hover:text-primary;
+    }
+}
