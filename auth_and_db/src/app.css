@@ -14,4 +14,27 @@
     nav > a {
         @apply text-sm font-semibold text-primary-content hover:text-primary;
     }
+
+    h1 {
+        @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+    }
+    h2 {
+        @apply scroll-m-20 text-3xl font-bold tracking-tight transition-colors first:mt-0;
+    }
+    h3 {
+        @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+    }
+    h4 {
+        @apply scroll-m-20 text-xl font-semibold tracking-tight;
+    }
+    p {
+        @apply leading-3 [&:not(:first-child)]:mt-4;
+    }
+    blockquote {
+        @apply mt-6 border-l-2 pl-6 italic;
+    }
+    code {
+        @apply relative rounded bg-base-200 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+    }
+    
 }

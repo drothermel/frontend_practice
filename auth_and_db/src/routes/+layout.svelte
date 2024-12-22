@@ -9,7 +9,7 @@
   <title>SvelteKit Auth</title>
 </svelte:head>
 
-<nav class="prose">
+<nav class="px-6 py-2 flex flex-row gap-4">
   <a href="/">Home</a>
   {#if !$page.data.user}
     <a href="/login">Login</a>
@@ -25,6 +25,6 @@
   {/if}
 </nav>
 
-<main class="prose">
+<main class="min-h-screen px-6 py-4">
   {@render children?.()}
 </main>
