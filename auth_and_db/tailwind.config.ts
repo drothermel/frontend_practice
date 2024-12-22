@@ -1,10 +1,14 @@
+import flowbitePlugin from 'flowbite/plugin'
 import type { Config } from 'tailwindcss';
 import typography from '@tailwindcss/typography';
 import daisyui from 'daisyui';
 
 const config: Config = {
-  content: ["./src/**/*.{html,js,svelte,ts}"],
-  plugins: [typography, daisyui],
+  content: [
+    "./src/**/*.{html,js,svelte,ts}",
+    './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'
+  ],
+  plugins: [typography, daisyui, flowbitePlugin],
   daisyui: {
     themes: ["emerald"],
     darkTheme: "emerald",

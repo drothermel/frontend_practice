@@ -1,20 +1,55 @@
 <script lang="ts">
+  import {
+    Label,
+    Button,
+    ButtonGroup,
+    InputAddon,
+    Input,
+    Card,
+  } from "flowbite-svelte";
+  import { EyeOutline, EyeSlashOutline } from "flowbite-svelte-icons";
   import { enhance } from "$app/forms";
   let { form } = $props();
+  let showPassword = $state(false);
 </script>
 
-<div class="w-full items-center justify-center bg-slate-300 py-4">
-  <div class="max-w-80 mx-auto text-center bg-green-500">
-    <h1>Login</h1>
+<div class="w-full items-center justify-center">
+  <form
+    action="?/login"
+    method="POST"
+    use:enhance
+    class="flex flex-col space-y-6 w-[400px] mx-auto"
+  >
+    <div>
+      <Card class="flex flex-col gap-2">
+        <h3 class="mb-4 text-xl font-medium text-gray-900">Log In</h3>
+        <Label class="space-y-2">
+          <span>Username</span>
+          <Input name="username" type="text" placeholder="Username" required />
+        </Label>
 
-    <form action="?/login" method="POST" use:enhance>
-      <div class="flex flex-col gap-4 py-4">
-        <div class="grid grid-col-2">
-          <label for="username">Username</label>
-          <input id="username" name="username" type="text" required />
-          <label for="password">Password</label>
-          <input id="password" name="password" type="password" required />
-        </div>
+        <Label for="password" class="space-y-2">Password</Label>
+        <ButtonGroup class="w-full">
+          <InputAddon>
+            <button
+              type="button"
+              onclick={() => (showPassword = !showPassword)}
+            >
+              {#if showPassword}
+                <EyeOutline class="w-6 h-6" />
+              {:else}
+                <EyeSlashOutline class="w-6 h-6" />
+              {/if}
+            </button>
+          </InputAddon>
+          <Input
+            id="password"
+            name="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="•••••"
+            required
+          />
+        </ButtonGroup>
 
         {#if form?.invalid}
           <p class="error">Username and password are both required.</p>
@@ -22,8 +57,8 @@
         {#if form?.credentials}
           <p class="error">You have entered the wrong credentials</p>
         {/if}
-        <button type="submit">Login</button>
-      </div>
-    </form>
-  </div>
+        <Button type="submit" class="w-full1 bg-secondary mt-4">Login</Button>
+      </Card>
+    </div>
+  </form>
 </div>
