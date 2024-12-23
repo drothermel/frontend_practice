@@ -1,38 +1,21 @@
-# sv
+# Snippet Viewer v0: Save Using Context API
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Created two components, a Snippet Input and a Snippet Library (but called Morsels because Snippet is a reserved word in Svelte). Additionally created a page that displayed the components in two resizable panes.
 
-## Creating a project
+The snippets can be added and deleted, and the data is being stored via the ContextAPI for now.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Next Step: switch from storing in the context API to storing in a database!
 
-```bash
-# create a new project in the current directory
-npx sv create
+**PRs:**
+- [PR 6: Create Snippet Viewer Example Using Just Context API
+](https://github.com/drothermel/frontend_practice/pull/6)
 
-# create a new project in my-app
-npx sv create my-app
-```
+## Final Results
 
-## Developing
+<img width="1435" alt="Screenshot 2024-12-11 at 7 43 18 PM" src="https://github.com/user-attachments/assets/84ed753a-c6ca-468d-89d8-9e5d3b66461a" />
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+<img width="1413" alt="Screenshot 2024-12-11 at 7 44 41 PM" src="https://github.com/user-attachments/assets/ce7e8bdc-9411-4de2-9eec-9a53536a966a" />
 
-```bash
-npm run dev
+<img width="1401" alt="Screenshot 2024-12-11 at 7 44 47 PM" src="https://github.com/user-attachments/assets/fb3345c8-9cff-42c3-a237-fe7083bdfa99" />
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+<img width="1431" alt="Screenshot 2024-12-11 at 7 44 54 PM" src="https://github.com/user-attachments/assets/07a41026-3f31-4164-ae57-922180bded2d" />
