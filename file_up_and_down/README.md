@@ -1,38 +1,8 @@
-# sv
+# File Uploader
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Super basic file uploader that then displays the file if it is an image.
 
-## Creating a project
+## Final State
+<img width="925" alt="Screenshot 2024-12-22 at 8 43 27 PM" src="https://github.com/user-attachments/assets/0bf2bdb1-94c0-4036-bbbf-55a26b4efe2c" />
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+<img width="903" alt="Screenshot 2024-12-22 at 8 43 40 PM" src="https://github.com/user-attachments/assets/d21e06b9-96c1-43d3-b281-44820de7c66c" />
