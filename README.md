@@ -1,7 +1,5 @@
 # frontend_practice
 
-TODO: Add my VSCode and node/pnpm setup info.
-
 ## Basic SvelteKit App Starter Stencil
 
 **Project:** [s5_app_stencil](https://github.com/drothermel/frontend_practice/tree/main/s5_app_stencil/README.md)
