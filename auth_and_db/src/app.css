@@ -16,19 +16,19 @@
   }
 
   h1 {
-    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-primary-content;
   }
   h2 {
-    @apply scroll-m-20 text-3xl font-bold tracking-tight transition-colors first:mt-0;
+    @apply scroll-m-20 text-3xl font-bold tracking-tight transition-colors first:mt-0 text-primary-content;
   }
   h3 {
-    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight text-primary-content;
   }
   h4 {
-    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+    @apply scroll-m-20 text-xl font-semibold tracking-tight text-primary-content;
   }
   p {
-    @apply leading-3 [&:not(:first-child)]:mt-4;
+    @apply leading-3 [&:not(:first-child)]:mt-4 text-primary-content;
   }
   blockquote {
     @apply mt-6 border-l-2 pl-6 italic;

@@ -18,11 +18,11 @@
     action="?/login"
     method="POST"
     use:enhance
-    class="flex flex-col space-y-6 w-[400px] mx-auto"
+    class="flex flex-col space-y-4 w-[400px] mx-auto"
   >
     <div>
       <Card class="flex flex-col gap-2">
-        <h3 class="mb-4 text-xl font-medium text-gray-900">Log In</h3>
+        <h3 class="mb-4 text-xl font-medium text-primary-content">Log In</h3>
         <Label class="space-y-2">
           <span>Username</span>
           <Input name="username" type="text" placeholder="Username" required />
