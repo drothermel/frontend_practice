@@ -1,38 +1,17 @@
-# sv
+# Arxiv Viewer
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is an app that shows how you can display the results from the [Dummy Json API](https://dummyjson.com/) (so easy) and then how you can query and parse the results from the arxiv api.
 
-## Creating a project
+Additionally the arxiv page allows for querying with an author and the retrieved results bold the name of the author whose name is in the input field.
 
-If you're seeing this, you've probably already done this step. Congrats!
+**PRs:**
+- [PR 7: Arxiv Viewer V0 | Interact with the Arxiv API](https://github.com/drothermel/frontend_practice/pull/7)
 
-```bash
-# create a new project in the current directory
-npx sv create
+**Note:** A Cleaner impl of this is available in `db_auth_tables` from [PR 15: Arxiv API JSON & Table Viewers + Add to Library](https://github.com/drothermel/frontend_practice/pull/15)
 
-# create a new project in my-app
-npx sv create my-app
-```
+## Final Results
+<img width="1420" alt="Screenshot 2024-12-12 at 12 07 12 AM" src="https://github.com/user-attachments/assets/e2fd9c49-5292-428b-8286-5fc8993dcf34" />
 
-## Developing
+<img width="1435" alt="Screenshot 2024-12-12 at 12 07 20 AM" src="https://github.com/user-attachments/assets/c3118c4a-d68d-4852-bcd7-0b47053f3f4f" />
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+<img width="1424" alt="Screenshot 2024-12-12 at 12 07 30 AM" src="https://github.com/user-attachments/assets/14daa57d-06d7-4f5a-8077-195ed8d21ebf" />
