@@ -1,12 +1,24 @@
-import typography from '@tailwindcss/typography';
+import flowbitePlugin from 'flowbite/plugin'
 import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography';
+import daisyui from 'daisyui';
 
-export default {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-
-  theme: {
-    extend: {}
+const config: Config = {
+  content: [
+    "./src/**/*.{html,js,svelte,ts}",
+    './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'
+  ],
+  plugins: [typography, daisyui, flowbitePlugin],
+  daisyui: {
+    themes: ["emerald"],
+    darkTheme: "emerald",
+    base: true, // Include DaisyUI's base styles
+    styled: true, // Include DaisyUI's component styling
+    utils: true, // Enable DaisyUI's utilities
+    logs: false, // Show logs in the console
+    rtl: false, // Support for right-to-left layouts
+    prefix:"", // DaisyUI class name prefix (if needed)
   },
+}
 
-  plugins: [typography]
-} satisfies Config;
+export default config;
