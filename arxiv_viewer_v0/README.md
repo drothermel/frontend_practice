@@ -1,4 +1,4 @@
-# Arxiv Viewer
+# Arxiv Viewer v0
 
 This is an app that shows how you can display the results from the [Dummy Json API](https://dummyjson.com/) (so easy) and then how you can query and parse the results from the arxiv api.
 
