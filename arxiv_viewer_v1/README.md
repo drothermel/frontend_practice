@@ -1,4 +1,4 @@
-# Arxiv Viewer V1: Via JSON & Table
+# Arxiv Viewer V1: Add Types, View in JSON and as Table
 
 Goal was to get the arxiv output in a more typesafe version & display in JSON and as a basic table.
 
