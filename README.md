@@ -1,37 +1,11 @@
 # frontend_practice
 
-## Basic SvelteKit App Starter Stencil
+**S5 App Stencil**: ([quickstart here](https://github.com/drothermel/frontend_practice/tree/main/s5_app_stencil/README.md))
 
-**Project:** [s5_app_stencil](https://github.com/drothermel/frontend_practice/tree/main/s5_app_stencil/README.md)
-
-**Main focus:** reusable starter app with nav bar and basic formatting to look reasonable.
-
-From [shadcn-svelte](https://next.shadcn-svelte.com/), using:
-- vite
-- tailwindcss
-- shadcn-svelte
-
-**Final Results:**
-
-<img src="https://github.com/user-attachments/assets/191d3b24-d813-4528-ad12-670306ea75c6" alt="Home Page Screenshot" width="50%">
-
-<img src="https://github.com/user-attachments/assets/265cb25b-9f6f-44ec-a530-15261f61ba70" alt="Dummy Page Screenshot" width="50%">
-
-
-
-## TailwindCSS Basic Landing Page
-**Project:** [tailwindcss-landing-one](https://github.com/drothermel/frontend_practice/tree/main/tailwindcss-landing-one/README.md)
-
-**Main focus:** reactive page layout & interactive components.
-
-From [this youtube video](https://www.youtube.com/watch?v=W-LDhPyv478), using:
-- vite
-- html
-- tailwindcss
-(no javascript or frameworks)
-
-**Final Result:**
-
-<img src="https://github.com/user-attachments/assets/cd3e480c-abfe-47cc-afcc-5f2525b0c290" alt="Landing Page Screenshot" width="100%">
-
-
+## Other Projects
+- [Arxiv Viewer v0](https://github.com/drothermel/frontend_practice/tree/copy_info_to_readmes/arxiv_viewer_v0): Query with Author Display Metadata Text
+- [Arxiv Viewer v1](https://github.com/drothermel/frontend_practice/tree/copy_info_to_readmes/arxiv_viewer_v1): Typed Query and Response, Display as JSON or as Table
+- [Auth & DB](https://github.com/drothermel/frontend_practice/tree/copy_info_to_readmes/auth_and_db): Resigster and Login Flow + Prisma DB
+- [Svedit](https://github.com/drothermel/frontend_practice/tree/copy_info_to_readmes/svedit): Block based document editor
+- [Snippet Viewer v0](https://github.com/drothermel/frontend_practice/tree/copy_info_to_readmes/snippet_viewer_v0): Simple form without validation to input snippet, resizable panels to view snippet card library
+- [Tailwind Basic Landing Page](https://github.com/drothermel/frontend_practice/tree/main/tailwindcss-landing-one/README.md): Really simple first attempt with tailwind
