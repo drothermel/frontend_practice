@@ -9,6 +9,8 @@
   <AppSidebar />
   <main>
     <Sidebar.Trigger />
-    {@render children?.()}
+    <div class="bg-background relative flex flex-col min-h-screen p-4">
+      {@render children?.()}
+    </div>
   </main>
 </Sidebar.Provider>

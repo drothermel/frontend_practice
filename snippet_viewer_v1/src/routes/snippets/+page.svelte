@@ -1,4 +1,6 @@
 <script lang="ts">
 </script>
 
-<h1>Snippet Editor</h1>
+<div class="flex flex-col prose">
+  <h1 class="mb-2">Snippet Editor</h1>
+</div>
