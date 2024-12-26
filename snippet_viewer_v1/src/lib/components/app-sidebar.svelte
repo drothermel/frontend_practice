@@ -1,11 +1,16 @@
 <script>
-  import House from "lucide-svelte/icons/house";
+  import { House, Captions } from "lucide-svelte";
   import * as Sidebar from "$lib/components/ui/sidebar/index";
   const menu_items = [
     {
       icon: House,
       title: "Home",
       url: "/",
+    },
+    {
+      icon: Captions,
+      title: "Snippets",
+      url: "/snippets",
     },
   ];
 </script>
